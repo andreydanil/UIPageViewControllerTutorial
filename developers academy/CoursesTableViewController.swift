@@ -30,8 +30,17 @@ class CoursesTableViewController: UITableViewController
     
     func displayWalkthroughs()
     {
+        // check if walkthroughs have been shown
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let displayedWalkthrough = userDefaults.boolForKey("DisplayedWalkthrough")
         
-    
+        // if we haven't shown the walkthroughs, let's show them
+        if !displayedWalkthrough {
+            // instantiate neew PageVC via storyboard
+            if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as? PageViewController {
+                self.presentViewController(pageViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     // MARK: - UITableViewDataSource
